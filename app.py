@@ -40,7 +40,7 @@ def message():
                 subject=app.config["MAIL_SUBJECT"],
                 sender=app.config["MAIL_DEFAULT_SENDER"],
                 body=f"Chili interest submission: {name} - {email} / {phone}",
-                recipients=app.config["MAIL_RECIPIENT"],
+                recipients=(app.config["MAIL_RECIPIENT"],),
             )
         )
         flash(
