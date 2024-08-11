@@ -1,0 +1,8 @@
+settings.py
+config.py
+venv
+__pycache__
+*.log
+*.pyc
+.*
+!.gitignore
