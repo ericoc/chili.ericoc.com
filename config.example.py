@@ -9,5 +9,6 @@ MAIL_USERNAME = None
 MAIL_PASSWORD = None
 MAIL_DEFAULT_SENDER = "chili@ericoc.com"
 
+TELEPHONE = "7577423742"
 MAIL_RECIPIENT = "eric@ericoc.com"
 MAIL_SUBJECT = "Chili"

@@ -12,6 +12,7 @@ def context():
     return {
         "SUBJECT": app.config["MAIL_SUBJECT"],
         "RECIPIENT": app.config["MAIL_RECIPIENT"],
+        "TELEPHONE": app.config["TELEPHONE"],
     }
 
 

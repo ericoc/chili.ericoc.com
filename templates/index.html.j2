@@ -1,3 +1,4 @@
+{%- set TELEPHONE_HUMAN = "(" + TELEPHONE[:3] + ") " + TELEPHONE[3:6] + "-" + TELEPHONE[6:] %}
 <!DOCTYPE html>
 <html lang="en">
 
@@ -28,6 +29,7 @@
                 p { padding: 0; margin: 0; }
                 a { text-decoration: none; }
             }
+            a img { text-decoration: none }
             label { font-weight: bold; }
             li { list-style: none; }
         </style>
@@ -138,7 +140,7 @@
             <div class="card-text p-1">
 
                 <p class="fw-bold">
-                    &quot;Chili&quot; is young, hyper, playful, and <i>very</i> cute!
+                    &quot;Chili&quot; is young, hyper, playful, and <em>very</em> cute!
                 </p>
                 <p>
                     Chili is desperate for a good home that is able to give him the love and attention that he wants and needs.
@@ -218,14 +220,12 @@
                         </div>
                     </form>
 {% else %}
-
                     <p class="card-text">
                         <em class="fw-bold form-text text-success">
                             Thank you for completing the form -
                             we will be in touch!
                         </em>
                     </p>
-
 {% endif %}
 
                 </div>
@@ -237,10 +237,10 @@
         <footer class="card-footer">
 
             <div class="card-text">
-                <p>
+                <a>
                     Please contact &quot;Eric&quot; if you are interested,
-                    by e-mail at <a href="mailto:{{ RECIPIENT }}?subject={{ SUBJECT }}" title="E-mail {{ RECIPIENT }}" data-bs-toggle="tooltip" data-bs-title="E-mail {{ RECIPIENT }}" data-bs-placement="top" target="_blank">{{ RECIPIENT }}</a> ✉️,
-                    or call or text <a href="tel:+17577423742" title="Call or text (757) 742-3742" data-bs-toggle="tooltip" data-bs-title="Call or text (757) 742-3742" data-bs-placement="top" target="_blank">(757) 742-3742</a> 📱<span class="noprint">, or fill out the form above</span>.
+                    via e-mail at <a href="mailto:{{ RECIPIENT }}?subject={{ SUBJECT }}" title="E-mail {{ RECIPIENT }}" data-bs-toggle="tooltip" data-bs-title="E-mail {{ RECIPIENT }}" data-bs-placement="top" target="_blank">{{ RECIPIENT }}</a> ✉️,
+                    or call or text <a href="tel:+1{{ TELEPHONE }}" title="Call or text {{ TELEPHONE_HUMAN }}" data-bs-toggle="tooltip" data-bs-title="Call or text {{ TELEPHONE_HUMAN }}" data-bs-placement="top" target="_blank">{{ TELEPHONE_HUMAN }}</a> 📱<span class="noprint">, or fill out the form above</span>.
                 </p>
                 <p class="noprint text-secondary">
                     Chili is also listed on
