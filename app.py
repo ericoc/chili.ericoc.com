@@ -54,12 +54,7 @@ def message():
         resp = make_response(
             render_template("index.html.j2", SUBMITTED="True")
         )
-        resp.set_cookie(
-            key="submitted",
-            value="True",
-            secure=True,
-            max_age=604800
-        )
+        resp.set_cookie(key="submitted", value="True", max_age=604800)
         return resp
 
 
