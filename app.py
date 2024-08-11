@@ -19,7 +19,7 @@ def context():
 def index():
     return render_template(
         "index.html.j2",
-        SUBMITTED=request.cookies.get("submitted")
+        SUBMITTED=str(bool(request.cookies.get("submitted", False)))
     )
 
 
