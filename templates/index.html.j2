@@ -43,9 +43,7 @@
 
                 <div class="col">
                     <div class="card-img" title="Share/visit this website: {{ url_for('index', _external=True) }}" data-bs-toggle="tooltip" data-bs-placement="bottom" data-bs-title="Share/visit this website: {{ url_for('index', _external=True) }}">
-                        <a href="{{ url_for('index', _external=True) }}">
-                            <img src="{{ url_for('static', filename='qr.png') }}" class="border border-dark p-1 rounded" style="height: 7.5rem;" alt="Share/visit this website: {{ url_for('index', _external=True) }}">
-                        </a>
+                        <img src="{{ url_for('static', filename='qr.png') }}" class="border border-dark p-1 rounded" style="height: 7.5rem;" alt="Share/visit this website: {{ url_for('index', _external=True) }}">
                     </div>
                 </div>
 
