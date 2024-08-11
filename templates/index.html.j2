@@ -18,8 +18,10 @@
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
         <style>
-            @media print { .noprint { visibility: hidden; } }
-            .card-img { width: 75%; }
+            @media print {
+                .noprint { display: none; }
+                .card-img { width: 50%; }
+            }
             label { font-weight: bold; }
             li { list-style: none; }
         </style>
@@ -146,7 +148,7 @@
 
             </div>
 
-            <div class="row w-60 p-1 m-auto text-center">
+            <div class="row w-60 p-1 m-auto text-center noprint">
 
                 <div class="col">
                     <p class="card-text">
@@ -170,9 +172,9 @@
 
             </div>
 
-            <hr>
+            <hr class="noprint">
 
-            <div class="row w-60 p-1 m-auto text-center">
+            <div class="row w-60 p-1 m-auto text-center noprint">
 
                 <div class="col">
                     <p class="card-text">
@@ -182,28 +184,28 @@
                 </div>
                 <div class="col">
                     <p class="card-text">
-                        <em>
+                        <em class="form-text">
                             Please fill out this form if you are interested in adopting Chili,
                             and would like to be contacted.
                         </em>
                         <form method="post">
                             <div class="p-1">
-                                <label for="name">Name:</label>
-                                <input class="rounded border border-dark" type="text" name="name" id="name" maxlength="64" aria-required="true" required="required">
+                                <label for="name" class="form-label">Name:</label>
+                                <input class="rounded border border-dark form-control" type="text" name="name" id="name" maxlength="64" aria-required="true" required="required">
                             </div>
 
                             <div class="p-1">
-                                <label for="email">E-mail:</label>
-                                <input class="rounded border border-dark" type="email" name="email" id="email">
+                                <label for="email" class="form-label">E-mail:</label>
+                                <input class="rounded border border-dark form-control" type="email" name="email" id="email">
                             </div>
 
                             <div class="p-1">
-                                <label for="phone">Phone:</label>
-                                <input class="rounded border border-dark" type="tel" name="phone" id="phone">
+                                <label for="phone" class="form-label">Phone:</label>
+                                <input class="rounded border border-dark form-control" type="tel" name="phone" id="phone">
                             </div>
 
                             <div class="p-1">
-                                <input type="submit" class="rounded">
+                                <input type="submit" class="rounded btn btn-primary">
                             </div>
                         </form>
                     </p>
