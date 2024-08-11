@@ -1,4 +1,4 @@
-from flask import Flask, flash, render_template, request
+from flask import Flask, flash, make_response, render_template, request
 from flask_mail import Mail, Message
 
 
@@ -11,13 +11,16 @@ mail = Mail(app)
 def context():
     return {
         "SUBJECT": app.config["MAIL_SUBJECT"],
-        "RECIPIENT": app.config["MAIL_RECIPIENT"]
+        "RECIPIENT": app.config["MAIL_RECIPIENT"],
     }
 
 
 @app.route("/", methods=["GET"])
 def index():
-    return render_template("index.html.j2")
+    return render_template(
+        "index.html.j2",
+        SUBMITTED=request.cookies.get("submitted")
+    )
 
 
 @app.route("/", methods=["POST"])
@@ -40,7 +43,7 @@ def message():
                 subject=app.config["MAIL_SUBJECT"],
                 sender=app.config["MAIL_DEFAULT_SENDER"],
                 body=f"Chili interest submission: {name} - {email} / {phone}",
-                recipients=(app.config["MAIL_RECIPIENT"],),
+                recipients=[app.config["MAIL_RECIPIENT"]],
             )
         )
         flash(
@@ -48,7 +51,11 @@ def message():
             message="Thank you - we will reach out to you about Chili soon!"
         )
 
-    return index()
+        resp = make_response(
+            render_template("index.html.j2", SUBMITTED="True")
+        )
+        resp.set_cookie("submitted", str(True))
+        return resp
 
 
 @app.errorhandler(404)

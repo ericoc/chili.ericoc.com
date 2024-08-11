@@ -185,6 +185,7 @@
 
                 <div class="col">
 
+                    {% if SUBMITTED is defined and SUBMITTED != "True" %}
                     <p class="card-text">
                         <em class="form-text">
                             Please fill out this form if you are interested in adopting Chili,
@@ -212,6 +213,16 @@
                             <input type="submit" class="rounded btn btn-primary">
                         </div>
                     </form>
+                    {% else %}
+
+                    <p class="card-text">
+                        <em class="fw-bold form-text text-success">
+                            Thank you for completing the form -
+                            we will be in touch!
+                        </em>
+                    </p>
+
+                    {% endif %}
 
                 </div>
 
