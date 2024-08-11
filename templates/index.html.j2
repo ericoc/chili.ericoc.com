@@ -20,6 +20,8 @@
         <style>
             @media print { .noprint { visibility: hidden; } }
             .card-img { width: 75%; }
+            label { font-weight: bold; }
+            li { list-style: none; }
         </style>
     </head>
 
@@ -32,7 +34,7 @@
                 <div class="col">
                     <div class="card-title">
                         <h1 class="card-text" title="Adopt Chili">
-                            <a href="https://chili.ericoc.com/">Adopt Chili</a><br>
+                            <a href="{{ url_for('index') }}">Adopt Chili</a><br>
                             😿😻
                         </h1>
                         <h6 class="card-text text-secondary" title="Philadelphia, Pennsylvania">
@@ -52,6 +54,22 @@
         </header>
 
         <main class="card-body">
+
+{%- with messages = get_flashed_messages(with_categories=True) %}
+    {%- if messages %}
+            <div id="messages" class="fw-bold lead text-center">
+                <ul id="flashes">
+        {%- for category, message in messages %}
+                    <li class="text-{{ category }}">
+                        {{ message }}
+                    </li>
+        {%- endfor %}
+                </ul>
+            </div>
+    {%- endif %}
+{%- endwith %}
+
+
 
             <div class="row w-60 p-1 m-auto text-center">
 
@@ -152,9 +170,46 @@
 
             </div>
 
-            <div class="m-auto text-center">
-                <em>Chilli chilling.</em><br>
-                <iframe class="p-1 border border-dark rounded" src="https://www.youtube.com/embed/5tCP16LO_78?si=TMlZKbH8G3Xkc5sk" title="YouTube video player" allow="encrypted-media; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+            <hr>
+
+            <div class="row w-60 p-1 m-auto text-center">
+
+                <div class="col">
+                    <p class="card-text">
+                        <em>Chilli chilling.</em><br>
+                        <iframe class="p-1 border border-dark rounded" src="https://www.youtube.com/embed/5tCP16LO_78?si=TMlZKbH8G3Xkc5sk" title="YouTube video player" allow="encrypted-media; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                    </p>
+                </div>
+                <div class="col">
+                    <p class="card-text">
+                        <em>
+                            Please fill out this form if you are interested in adopting Chili,
+                            and would like to be contacted.
+                        </em>
+                        <form method="post">
+                            <div class="p-1">
+                                <label for="name">Name:</label>
+                                <input class="rounded border border-dark" type="text" name="name" id="name" maxlength="64" aria-required="true" required="required">
+                            </div>
+
+                            <div class="p-1">
+                                <label for="email">E-mail:</label>
+                                <input class="rounded border border-dark" type="email" name="email" id="email">
+                            </div>
+
+                            <div class="p-1">
+                                <label for="phone">Phone:</label>
+                                <input class="rounded border border-dark" type="tel" name="phone" id="phone">
+                            </div>
+
+                            <div class="p-1">
+                                <input type="submit" class="rounded">
+                            </div>
+                        </form>
+                    </p>
+
+                </div>
+
             </div>
 
         </main>
@@ -164,8 +219,9 @@
             <div class="card-text">
                 <p class="lead">
                     Please contact &quot;Eric&quot; if you are interested,
-                    by e-mail at <a href="mailto:eric@ericoc.com?subject=Chili" title="E-mail eric@ericoc.com" data-bs-toggle="tooltip" data-bs-title="E-mail eric@ericoc.com" data-bs-placement="top" target="_blank">eric@ericoc.com</a> ✉️,
-                    or call or text <a href="tel:+17577423742" title="Call or text (757) 742-3742" data-bs-toggle="tooltip" data-bs-title="Call or text (757) 742-3742" data-bs-placement="top" target="_blank">(757) 742-3742</a> 📱.
+                    by e-mail at <a href="mailto:{{ RECIPIENT }}?subject={{ SUBJECT }}" title="E-mail {{ RECIPIENT }}" data-bs-toggle="tooltip" data-bs-title="E-mail {{ RECIPIENT }}" data-bs-placement="top" target="_blank">{{ RECIPIENT }}</a> ✉️,
+                    or call or text <a href="tel:+17577423742" title="Call or text (757) 742-3742" data-bs-toggle="tooltip" data-bs-title="Call or text (757) 742-3742" data-bs-placement="top" target="_blank">(757) 742-3742</a> 📱,
+                    or fill out the form above.
                 </p>
                 <p class="noprint text-secondary">
                     Chili is also listed on
