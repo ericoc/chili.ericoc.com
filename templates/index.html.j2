@@ -20,7 +20,13 @@
         <style>
             @media print {
                 .noprint { display: none; }
-                .card-img { width: 50%; }
+                .card {
+                    --bs-body-font-size: 0.7rem;
+                    font-size: 0.7rem;
+                    font-size-adjust: 0.7;
+                }
+                p { padding: 0; margin: 0; }
+                a { text-decoration: none; }
             }
             label { font-weight: bold; }
             li { list-style: none; }
@@ -36,7 +42,7 @@
                 <div class="col">
                     <div class="card-title">
                         <h1 class="card-text" title="Adopt Chili">
-                            <a href="{{ url_for('index') }}">Adopt Chili</a><br>
+                            <a href="{{ url_for('index') }}">Adopt Chili</a><br class="noprint">
                             😿😻
                         </h1>
                         <h6 class="card-text text-secondary" title="Philadelphia, Pennsylvania">
@@ -59,7 +65,7 @@
 
 {%- with messages = get_flashed_messages(with_categories=True) %}
     {%- if messages %}
-            <div id="messages" class="fw-bold lead text-center">
+            <div id="messages" class="fw-bold lead text-center noprint">
                 <ul id="flashes">
         {%- for category, message in messages %}
                     <li class="text-{{ category }}">
@@ -70,8 +76,6 @@
             </div>
     {%- endif %}
 {%- endwith %}
-
-
 
             <div class="row w-60 p-1 m-auto text-center">
 
@@ -101,30 +105,30 @@
 
                 <ul class="list-group col">
                     <li class="list-group-item list-group-item-text">
-                        <b>Gender</b> 🐈<br>
+                        <b>Gender</b> 🐈<br class="noprint">
                         Male ♂
                     </li>
                     <li class="list-group-item list-group-item-text">
-                        <b>Age</b> 👴<br>
+                        <b>Age</b> 👴<br class="noprint">
                         Less than one (1) year.
                     </li>
                     <li class="list-group-item list-group-item-text">
-                        <b>Weight</b> ⚖️<br>
+                        <b>Weight</b> ⚖️<br class="noprint">
                         Approximately five (5) pounds.
                     </li>
                 </ul>
 
                 <ul class="list-group col">
                     <li class="list-group-item list-group-item-text">
-                        <b>Neutered</b> ⚲<br>
+                        <b>Neutered</b> ⚲<br class="noprint">
                         Yes ✅
                     </li>
                     <li class="list-group-item list-group-item-text">
-                        <b>Micro-chipped</b> 🐾<br>
+                        <b>Micro-chipped</b> 🐾<br class="noprint">
                         Yes ✅
                     </li>
                     <li class="list-group-item list-group-item-text">
-                        <b>Vaccinated</b> 💉<br>
+                        <b>Vaccinated</b> 💉<br class="noprint">
                         Yes ✅
                     </li>
                 </ul>
@@ -133,9 +137,9 @@
 
             <div class="card-text p-1">
 
-                <h3 class="fw-bold lead">
+                <p class="fw-bold">
                     &quot;Chili&quot; is young, hyper, playful, and <i>very</i> cute!
-                </h3>
+                </p>
                 <p>
                     Chili is desperate for a good home that is able to give him the love and attention that he wants and needs.
                     However, he may not be good with other pets, since he has been jumping on and fighting with the older adult cat in the house now.
@@ -185,7 +189,7 @@
 
                 <div class="col">
 
-                    {% if SUBMITTED is defined and SUBMITTED != "True" %}
+{% if SUBMITTED is defined and SUBMITTED != "True" %}
                     <p class="card-text">
                         <em class="form-text">
                             Please fill out this form if you are interested in adopting Chili,
@@ -213,7 +217,7 @@
                             <input type="submit" class="rounded btn btn-primary">
                         </div>
                     </form>
-                    {% else %}
+{% else %}
 
                     <p class="card-text">
                         <em class="fw-bold form-text text-success">
@@ -222,7 +226,7 @@
                         </em>
                     </p>
 
-                    {% endif %}
+{% endif %}
 
                 </div>
 
@@ -233,7 +237,7 @@
         <footer class="card-footer">
 
             <div class="card-text">
-                <p class="lead">
+                <p>
                     Please contact &quot;Eric&quot; if you are interested,
                     by e-mail at <a href="mailto:{{ RECIPIENT }}?subject={{ SUBJECT }}" title="E-mail {{ RECIPIENT }}" data-bs-toggle="tooltip" data-bs-title="E-mail {{ RECIPIENT }}" data-bs-placement="top" target="_blank">{{ RECIPIENT }}</a> ✉️,
                     or call or text <a href="tel:+17577423742" title="Call or text (757) 742-3742" data-bs-toggle="tooltip" data-bs-title="Call or text (757) 742-3742" data-bs-placement="top" target="_blank">(757) 742-3742</a> 📱<span class="noprint">, or fill out the form above</span>.
