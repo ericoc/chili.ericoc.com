@@ -5,9 +5,9 @@ from wtforms.validators import DataRequired, Email, Optional
 
 
 class ContactForm(Form):
-    name = StringField(label="name", validators=(DataRequired(),))
-    email = EmailField(label="email", validators=(Email(), Optional()))
-    phone = TelField(label="tel", validators=(Optional(),))
+    name = StringField(label="Name", validators=(DataRequired(),))
+    email = EmailField(label="Email", validators=(Email(), Optional()))
+    phone = TelField(label="Phone", validators=(Optional(),))
     submit = SubmitField(label="Submit")
 
 

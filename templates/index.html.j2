@@ -1,4 +1,10 @@
 {%- set TELEPHONE_HUMAN = "(" + TELEPHONE[:3] + ") " + TELEPHONE[3:6] + "-" + TELEPHONE[6:] %}
+{% macro render_field(field) %}
+                      <div class="p-1">
+                          {{ field.label(class_="form-label") }}
+                          {{ field(class_="border border-dark form-control rounded") }}
+                      </div>
+{% endmacro %}
 <!DOCTYPE html>
 <html lang="en">
 
@@ -223,23 +229,11 @@
                     </p>
 
                     <form method="post">
+                        {{ render_field(form.name) }}
+                        {{ render_field(form.email) }}
+                        {{ render_field(form.phone) }}
                         <div class="p-1">
-                            <label for="name" class="form-label">Name:</label>
-                            <input class="rounded border border-dark form-control" type="text" name="name" id="name" maxlength="64" required="required">
-                        </div>
-
-                        <div class="p-1">
-                            <label for="email" class="form-label">E-mail:</label>
-                            <input class="rounded border border-dark form-control" type="email" name="email" id="email">
-                        </div>
-
-                        <div class="p-1">
-                            <label for="phone" class="form-label">Phone:</label>
-                            <input class="rounded border border-dark form-control" type="tel" name="phone" id="phone">
-                        </div>
-
-                        <div class="p-1">
-                            <input type="submit" class="rounded btn btn-primary">
+                            {{ form.submit(class_="btn btn-primary rounded") }}
                         </div>
                     </form>
 {% else %}
