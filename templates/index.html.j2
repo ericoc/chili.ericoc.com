@@ -15,6 +15,9 @@
         <meta property="og:description" content="Chili is a young, hyper, playful, and VERY cute cat in Philadelphia, Pennsylvania. He is neutered, micro-chipped, vaccinated, and desperate for a good home.">
         <meta property="og:url" content="{{ url_for('index', _external=True) }}">
         <meta property="og:image" content="{{ url_for('static', _external=True, filename='attention.png') }}">
+        <meta property="og:video" content="https://www.youtube.com/embed/2pPj7qhU55c">
+        <meta property="og:video:url" content="https://www.youtube.com/embed/2pPj7qhU55c">
+        <meta property="og:video:secure_url" content="https://www.youtube.com/v/2pPj7qhU55c">
         <title>Adopt Chili 😿😻 Philadelphia, Pennsylvania</title>
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
@@ -32,6 +35,7 @@
             a img { text-decoration: none }
             label { font-weight: bold; }
             li { list-style: none; }
+            .form-control { width: 20rem; margin: auto; text-align: center; }
         </style>
     </head>
 
@@ -184,14 +188,33 @@
 
                 <div class="col">
                     <p class="card-text">
-                        <em>Chilli chilling.</em><br>
-                        <iframe class="p-1 border border-dark rounded" src="https://www.youtube.com/embed/5tCP16LO_78?si=TMlZKbH8G3Xkc5sk" title="YouTube video player" allow="encrypted-media; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                        <iframe class="p-1 border border-dark rounded" src="https://www.youtube.com/embed/2pPj7qhU55c" title="Chilli swimming in a blanket." allow="encrypted-media; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe><br>
+                        <em>Chilli swimming in a blanket.</em><br>
                     </p>
                 </div>
 
                 <div class="col">
+                    <p class="card-text">
+                        <iframe class="p-1 border border-dark rounded" src="https://www.youtube.com/embed/5tCP16LO_78?si=TMlZKbH8G3Xkc5sk" title="Chilli chilling." allow="encrypted-media; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe><br>
+                        <em>Chilli chilling.</em>
+                    </p>
+                </div>
 
-{% if SUBMITTED is defined and SUBMITTED != "True" %}
+                <div class="col">
+                    <p class="card-text">
+                        <iframe class="p-1 border border-dark rounded" src="https://www.youtube.com/embed/BvsJHQ3ij8I" title="Chili playing." allow="encrypted-media; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe><br>
+                        <em>Chilli playing.</em>
+                    </p>
+                </div>
+
+            </div>
+
+            <hr class="noprint">
+
+            <div class="row w-60 p-1 m-auto text-center noprint">
+                <div class="col">
+
+{% if form %}
                     <p class="card-text">
                         <em class="form-text">
                             Please fill out this form if you are interested in adopting Chili,
@@ -227,7 +250,6 @@
                         </em>
                     </p>
 {% endif %}
-
                 </div>
 
             </div>

@@ -1,5 +1,14 @@
 from flask import Flask, flash, make_response, render_template, request
 from flask_mail import Mail, Message
+from wtforms import Form, EmailField, StringField, SubmitField, TelField
+from wtforms.validators import DataRequired, Email, Optional
+
+
+class ContactForm(Form):
+    name = StringField(label="name", validators=(DataRequired(),))
+    email = EmailField(label="email", validators=(Email(), Optional()))
+    phone = TelField(label="tel", validators=(Optional(),))
+    submit = SubmitField(label="Submit")
 
 
 app = Flask(__name__)
@@ -16,47 +25,54 @@ def context():
     }
 
 
-@app.route("/", methods=["GET"])
+@app.route("/", methods=["GET", "POST"])
 def index():
-    return render_template(
-        "index.html.j2",
-        SUBMITTED=str(bool(request.cookies.get("submitted", False)))
-    )
 
+    set_cookie = False
+    form = ContactForm(request.form)
+    if bool(request.cookies.get(app.config["COOKIE"], False)) is True:
+        form = None
 
-@app.route("/", methods=["POST"])
-def message():
-    name = request.form.get("name")
-    email = request.form.get("email")
-    phone = request.form.get("phone")
+    if form is not None and form.validate():
+        name = form.name.data or None
+        email = form.email.data or None
+        phone = form.phone.data or None
 
-    if not email and not phone:
-        flash(
-            message="Sorry, but please provide either an e-mail address or"
-                    " telephone number where you can be contacted about Chili!",
-            category="danger"
-        )
-        return index()
-
-    with mail.connect() as conn:
-        conn.send(
-            Message(
-                subject=app.config["MAIL_SUBJECT"],
-                sender=app.config["MAIL_DEFAULT_SENDER"],
-                body=f"Chili interest submission: {name} - {email} / {phone}",
-                recipients=[app.config["MAIL_RECIPIENT"]],
+        if not email and not phone:
+            flash(
+                message=(
+                    "Sorry, but please provide either an e-mail address or"
+                    " telephone number where you can be contacted about Chili!"
+                ),
+                category="danger"
             )
-        )
-        flash(
-            category="success",
-            message="Thank you - we will reach out to you about Chili soon!"
-        )
 
-        resp = make_response(
-            render_template("index.html.j2", SUBMITTED="True")
-        )
-        resp.set_cookie(key="submitted", value="True", max_age=604800)
-        return resp
+        else:
+            with mail.connect() as conn:
+                conn.send(
+                    Message(
+                        subject=app.config["MAIL_SUBJECT"],
+                        sender=app.config["MAIL_DEFAULT_SENDER"],
+                        body=(
+                            f'{app.config["MAIL_SUBJECT"]} interest submission:'
+                            f"\n{name} - {email} / {phone}"
+                        ),
+                        recipients=[app.config["MAIL_RECIPIENT"]],
+                    )
+                )
+                flash(
+                    category="success",
+                    message=(
+                        "Thank you - we will reach out to you about Chili soon!"
+                    )
+                )
+                form = None
+                set_cookie = True
+
+    resp = make_response(render_template("index.html.j2", form=form))
+    if set_cookie is True:
+        resp.set_cookie(key=app.config["COOKIE"], value=str(True))
+    return resp
 
 
 @app.errorhandler(404)
