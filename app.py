@@ -77,6 +77,7 @@ def index():
 
 @app.errorhandler(404)
 def not_found(e):
+    flash(message="Sorry, but that page could not be found.", category="danger")
     return render_template("404.html.j2"), 404
 
 
